@@ -13,6 +13,16 @@ namespace AspNetCoreMvcLab.Controllers
             _logger = logger;
         }
 
+        public IActionResult Hello()
+        {
+            var obj = new
+            {
+                Status = 2000
+            };
+
+            return this.Json(obj);
+        }
+
         public IActionResult Index()
         {
             return View();

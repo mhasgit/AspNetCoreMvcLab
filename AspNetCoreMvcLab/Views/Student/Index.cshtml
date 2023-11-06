@@ -1,0 +1,42 @@
+﻿@model List<AspNetCoreMvcLab.Models.Student>;
+@{
+    ViewData["Title"] = "Home Page";
+    //Layout = null;
+}
+
+
+<h1>Students</h1>
+
+<a class="btn btn-primary" asp-action="Create">Create Student</a>
+
+@if(Model.Any(s => !s.FeePaid))
+{
+    <div class="alert alert-warning">
+        Some students have not paid their fees!!!
+    </div>
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primay">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var student in Model)
+        {
+            @*<tr class="@(student.Id % 2 == 0 ? "table-primary" : "")">*@
+            <tr>
+                <td class="table-secondary">@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Phone</td>
+                <td>@student.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
