@@ -11,6 +11,8 @@ namespace AspNetCoreMvcLab.Storage
 
         public DbSet<Student> Students => Set<Student>();
 
+        public DbSet<Teacher> Teachers => Set<Teacher>();
+
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

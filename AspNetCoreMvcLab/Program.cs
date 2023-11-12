@@ -22,6 +22,7 @@ namespace AspNetCoreMvcLab
             });
 
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+            builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 
             var app = builder.Build();
 
@@ -52,8 +53,7 @@ namespace AspNetCoreMvcLab
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            StudentSeeder.Seed(app);
-
+            StudentDbContextSeeder.Seed(app);
             app.Run();
         }
     }

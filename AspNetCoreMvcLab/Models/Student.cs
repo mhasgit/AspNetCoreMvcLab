@@ -7,6 +7,8 @@
         public string Phone { get; set; }
         public string Email { get; set; }
         public bool FeePaid { get; set; }
+        public string Address { get; set; }
+        public int Age { get; set; }
 
         public List<Student> GetStudents()
         {
