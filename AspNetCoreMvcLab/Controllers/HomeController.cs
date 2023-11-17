@@ -30,7 +30,7 @@ namespace AspNetCoreMvcLab.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+             View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
