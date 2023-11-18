@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreMvcLab", "AspNetCoreMvcLab\AspNetCoreMvcLab.csproj", "{36462809-CFBF-4075-A27E-87852CDFAD70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreMvcLab", "AspNetCoreMvcLab\AspNetCoreMvcLab.csproj", "{36462809-CFBF-4075-A27E-87852CDFAD70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreMvcLab.Tests", "AspNetCoreMvcLab.Tests\AspNetCoreMvcLab.Tests.csproj", "{8A63DC61-4B3A-45F2-8391-AC2E80C51B14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{36462809-CFBF-4075-A27E-87852CDFAD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36462809-CFBF-4075-A27E-87852CDFAD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36462809-CFBF-4075-A27E-87852CDFAD70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A63DC61-4B3A-45F2-8391-AC2E80C51B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A63DC61-4B3A-45F2-8391-AC2E80C51B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A63DC61-4B3A-45F2-8391-AC2E80C51B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A63DC61-4B3A-45F2-8391-AC2E80C51B14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
