@@ -47,7 +47,7 @@ namespace EmptyWebApp
 
             builder.Services.AddSession(option =>
             {
-                option.IdleTimeout = TimeSpan.FromSeconds(60);
+                option.IdleTimeout = TimeSpan.FromSeconds(6);
                 option.Cookie.IsEssential = true;
             });
 
@@ -135,8 +135,8 @@ namespace EmptyWebApp
                 return Task.CompletedTask;
             });
 
-            // Session
-            app.MapGet("session", async context =>
+            // Session and Cookie
+            app.MapGet("sessionandcookie", async context =>
             {
                 var visitorIdValue = context.Request.Cookies["VisitorId"];
                 if(visitorIdValue != null)
@@ -151,6 +151,25 @@ namespace EmptyWebApp
                     var visitorId = Guid.NewGuid().ToString();
                     context.Response.Cookies.Append("VisitorId", visitorId);
                     context.Session.SetInt32(visitorId, 1);
+                    await context.Session.CommitAsync();
+                    await context.Response.WriteAsync($"You are a first time visitor");
+                }
+            });
+
+
+            app.MapGet("session", async context =>
+            {
+                var sessionCountValue = context.Session.GetInt32("VisitCount");
+                if (sessionCountValue != null)
+                {
+                    var visitCount = sessionCountValue.Value + 1;
+                    context.Session.SetInt32("VisitCount", visitCount);
+                    await context.Session.CommitAsync();
+                    await context.Response.WriteAsync($"You have visited the site {visitCount} time(s)");
+                }
+                else
+                {
+                    context.Session.SetInt32("VisitCount", 1);
                     await context.Session.CommitAsync();
                     await context.Response.WriteAsync($"You are a first time visitor");
                 }

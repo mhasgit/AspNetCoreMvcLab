@@ -1,4 +1,4 @@
-﻿@model AspNetCoreMvcLab.Models.Teacher
+﻿@model Teacher
 
 @{
     ViewData["Title"] = "Create";
@@ -45,4 +45,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>alert("Hi")</script>
 }
+

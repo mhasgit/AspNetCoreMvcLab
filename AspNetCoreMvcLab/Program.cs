@@ -49,9 +49,12 @@ namespace AspNetCoreMvcLab
             // movlo.com:80/home
             // movlo.com:80/home/index
             // movlo.com:80/home/index/123
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            //app.MapControllerRoute(
+            //    name: "default",
+            //    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapDefaultControllerRoute();
 
             StudentDbContextSeeder.Seed(app);
             app.Run();
