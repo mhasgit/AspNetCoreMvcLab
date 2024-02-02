@@ -28,9 +28,6 @@ namespace EmptyWebApp
         public string HourFormat { get; set; }
     }
 
-
-
-
     public class Program
     {
         public static void Main(string[] args)
@@ -155,7 +152,6 @@ namespace EmptyWebApp
                     await context.Response.WriteAsync($"You are a first time visitor");
                 }
             });
-
 
             app.MapGet("session", async context =>
             {

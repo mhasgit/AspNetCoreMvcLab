@@ -23,6 +23,7 @@ namespace AspNetCoreMvcLab.Models
 
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "Phone number can not be empty")]
         public string Phone { get; set; }
     }
 }

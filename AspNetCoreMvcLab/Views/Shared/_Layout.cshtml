@@ -39,6 +39,11 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (this.User.Identity != null && this.User.Identity.IsAuthenticated)
+            {
+                <h1>Hello @this.User.Identity.Name</h1>
+            }
+
             @RenderBody()
         </main>
     </div>

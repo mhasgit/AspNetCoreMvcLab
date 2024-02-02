@@ -1,6 +1,7 @@
 ﻿using AspNetCoreMvcLab.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace AspNetCoreMvcLab.Controllers
 {
@@ -15,6 +16,13 @@ namespace AspNetCoreMvcLab.Controllers
 
         public IActionResult Hello()
         {
+            var nameClaim =  this.User.FindFirst(ClaimTypes.Name);
+
+            if (this.User.Identity.IsAuthenticated)
+            {
+
+            }
+
             var obj = new
             {
                 Status = 2000

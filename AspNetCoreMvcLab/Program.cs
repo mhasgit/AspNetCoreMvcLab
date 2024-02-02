@@ -1,6 +1,7 @@
 using AspNetCoreMvcLab.Models;
 using AspNetCoreMvcLab.Storage;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace AspNetCoreMvcLab
 {
@@ -31,7 +32,27 @@ namespace AspNetCoreMvcLab
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            //app.Use(async (context, next) =>
+            //{
+            //    string userName = context.Request.Query["user"];
+            //    if (userName != null)
+            //    {
+            //        var identity = new ClaimsIdentity("QueryTypeAuth");
+            //        identity.AddClaim(new Claim(ClaimTypes.Name, userName));
+            //        var userPrincipal = new ClaimsPrincipal(identity);
+            //        context.User = userPrincipal;
+            //    }
+
+            //    // This is where we called the next middleware in the request pipeline
+            //    await next();
+            //});
+
+            //app.UseUserQueryAuth();
+
             app.UseStaticFiles();
+
+            app.UseMiddleware<CustomAuthentication>();
 
             app.UseRouting();
 
@@ -54,13 +75,46 @@ namespace AspNetCoreMvcLab
             //    name: "default",
             //    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.MapDefaultControllerRoute();
+            //app.MapDefaultControllerRoute();
 
-            StudentDbContextSeeder.Seed(app);
+            app.UseEndpoints(endpoints =>
+            {
+                // Minimal APIs
+                endpoints.MapGet("/signin", CustomAuth.SingIn);
+
+                endpoints.MapGet("/signout", CustomAuth.SignOut);
+
+                endpoints.MapDefaultControllerRoute();
+            });
+
+             StudentDbContextSeeder.Seed(app);
             app.Run();
         }
     }
 
+
+    public static class CustomAuth
+    {
+        public async static Task SingIn(HttpContext context)
+        {
+            string userName = context.Request.Query["user"];
+            if (userName != null)
+            {
+                context.Response.Cookies.Append("user", userName);
+                await context.Response.WriteAsync($"User {userName} Authenticated");
+            }
+            else
+            {
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            }
+        }
+
+        public async static Task SignOut(HttpContext context)
+        {
+            context.Response.Cookies.Delete("user");
+            await context.Response.WriteAsync("Signed out");
+        }
+    }
 
     #region Another Method of Startup and Main
     public class Startup
@@ -81,10 +135,10 @@ namespace AspNetCoreMvcLab
         // Configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (!env.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //}
 
             app.UseStaticFiles();
 
