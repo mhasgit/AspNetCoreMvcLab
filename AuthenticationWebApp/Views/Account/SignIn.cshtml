@@ -1,0 +1,19 @@
+﻿<h4>
+    Current User: @User.Identity.Name
+</h4>
+
+<div>
+    <form method="post" action="/account/signin">
+        <div>
+            <label>Username</label>
+            <input type="text" name="userName" />
+        </div>
+
+        <div>
+            <label>Password</label>
+            <input type="text" name="password" />
+        </div>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
